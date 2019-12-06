@@ -15,8 +15,8 @@ image=ImageTk.PhotoImage(Image.open("pp.jpg"))
 canvas.create_image(-20,-20,anchor=NW,image=image)
 canvas.pack()
 main.configure(bg="white")
-row = 3
-col = 3
+row=random.randint(1, 11)
+col = row
 matrix = initArr(row, col)
 
 def cls():
@@ -25,9 +25,9 @@ def cls():
 
 def play():
     cls()
-    player = tkinter.Button(mframe, command=loadMatrix, text='Player Mode', font= "Arial")
+    player = tkinter.Button(mframe, command=playerMode, text='Player Mode', font= "Arial")
     player.pack()
-    computer = tkinter.Button(mframe, text='Computer Mode', font= "Arial")
+    computer = tkinter.Button(mframe, command=computerMode, text='Computer Mode', font= "Arial")
     computer.pack()
     back = tkinter.Button(mframe, command=window, text='Back', font= "Arial")
     back.pack()
@@ -48,13 +48,27 @@ def how():
     back = tkinter.Button(mframe, command=window, text='Back', font= "Arial")
     back.pack()
 
-def loadMatrix():
+def playerMode():
     cls()
     labels = []
 
     for i in range(row+1):
         for j in range(col+1):
             labels.append(Label(mframe, text=matrix[i, j]).grid(column=j, row=i))
+
+    back = tkinter.Button(mframe, command=window, text='Back', font= "Arial")
+    back.grid(row=10, column=10)
+
+def computerMode():
+        cls()
+        labels = []
+
+        for i in range(row+1):
+            for j in range(col+1):
+                labels.append(Label(mframe, text=matrix[i, j]).grid(column=j, row=i))
+
+        back = tkinter.Button(mframe, command=window, text='Back', font= "Arial")
+        back.grid(row=10, column=100)
 
 def window():
     cls()
