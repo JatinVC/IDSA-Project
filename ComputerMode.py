@@ -27,12 +27,10 @@ def hints(arr, row, col):
     for i in range(row):
         if arr[i,col] < 0:
             return "I would recommend flipping row: " + str(i)
-    else:
-        return "nothing"
-
     #check if col sum is non-negative, if its negative, then suggest player to reverse sign
     for i in range(col):
         if arr[row,i]<0:
             return "I would recommend flipping col: " + str(i)
     else:
-        return "nothing"
+        #if no changes
+        return "no moves, you win!!!!!"
