@@ -7,17 +7,19 @@ import random
 main = tkinter.Tk()
 
 main.title("Sign-Reversal Puzzle")
+main.geometry("700x700")
 mframe = tkinter.Frame(main)
 mframe.configure(bg="white")
-mframe.pack(padx=100, pady=100)
-canvas = Canvas(main, width=600, height=200)
+mframe.pack()
+canvas = Canvas(main, width=600, height=600)
 image=ImageTk.PhotoImage(Image.open("pp.jpg"))
 canvas.create_image(-20,-20,anchor=NW,image=image)
 canvas.pack()
 main.configure(bg="white")
-row=random.randint(1, 11)
+row=random.randint(1, 10)
 col = row
 matrix = initArr(row, col)
+
 
 def cls():
     for buff in mframe.winfo_children():
@@ -54,10 +56,14 @@ def playerMode():
 
     for i in range(row+1):
         for j in range(col+1):
-            labels.append(Label(mframe, text=matrix[i, j]).grid(column=j, row=i))
+            labels.append(Label(mframe, text=matrix[i, j]).grid(column=j+5, row=i+5))
 
+    commandEntry = Entry(mframe, text="Type in your command here")
+    commandEntry.grid(row=1, column=1, padx=5, pady=5)
     back = tkinter.Button(mframe, command=window, text='Back', font= "Arial")
-    back.grid(row=10, column=10)
+    back.grid(row=2, column=1)
+
+
 
 def computerMode():
         cls()
@@ -65,10 +71,12 @@ def computerMode():
 
         for i in range(row+1):
             for j in range(col+1):
-                labels.append(Label(mframe, text=matrix[i, j]).grid(column=j, row=i))
+                labels.append(Label(mframe, text=matrix[i, j]).grid(column=j+5, row=i+5))
 
+        commandEntry = Entry(mframe, text="Type in your command here")
+        commandEntry.grid(row=1, column=1, padx=5, pady=5)
         back = tkinter.Button(mframe, command=window, text='Back', font= "Arial")
-        back.grid(row=10, column=100)
+        back.grid(row=2, column=1)
 
 def window():
     cls()
