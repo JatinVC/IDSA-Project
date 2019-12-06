@@ -1,29 +1,38 @@
 import numpy as np
-m=3
-n=3
 
 def initArr(row, col):
-    initedArr = np.random.randint(-10,10,(row, col))
+    initedArr = np.random.randint(-10,10,(row+1, col+1))
+    #adding row and column for sum
+    initedArr[:][row] = 0
+    initedArr[:,col] = 0
     return initedArr
-    print("Sum of each row:\n")
 
-
-matrix = initArr(m, n)
-print(matrix)
-
-def sums(arr):
+def updateSums(arr, row, col):
     sum = 0
-    for i in range(3):
-        for j in range(3):
+    #row sum
+    for i in range(row):
+        for j in range(col):
             sum += arr[i][j]
-        print("sum of row ", i, "=", sum)
+        arr[i,col] = sum
         sum = 0
-
-    for i in range(3):
-        sum = 0
-        for j in range(3):
+    #col sum
+    for i in range(row):
+        for j in range(col):
             sum += arr[j][i]
-        print("sum of col ", i, "=", sum)
+        arr[row,i] = sum
         sum = 0
 
-sums(matrix)
+def hints(arr, row, col):
+    #check if row sum is non-negative, if its negative, then suggest player to reverse sign
+    for i in range(row):
+        if arr[i,col] < 0:
+            return "I would recommend flipping row: " + str(i)
+    else:
+        return "nothing"
+
+    #check if col sum is non-negative, if its negative, then suggest player to reverse sign
+    for i in range(col):
+        if arr[row,i]<0:
+            return "I would recommend flipping col: " + str(i)
+    else:
+        return "nothing"
