@@ -15,8 +15,8 @@ image=ImageTk.PhotoImage(Image.open("pp.jpg"))
 canvas.create_image(-20,-20,anchor=NW,image=image)
 canvas.pack()
 main.configure(bg="white")
-row = 2
-col = 2
+row = 3
+col = 3
 matrix = initArr(row, col)
 
 def cls():
@@ -50,13 +50,11 @@ def how():
 
 def loadMatrix():
     cls()
-    matrixLabel = []
-    for i in range(row):
-        for j in range(col):
-            matrixLabel.append(tkinter.Label(mframe, text=matrix[i][j]))
-    for i in range(len(matrixLabel)):
-        for j in matrixLabel:
-            j.grid(col=i, row=i)
+    labels = []
+
+    for i in range(row+1):
+        for j in range(col+1):
+            labels.append(Label(mframe, text=matrix[i, j]).grid(column=j, row=i))
 
 def window():
     cls()

@@ -5,6 +5,7 @@ def initArr(row, col):
     #adding row and column for sum
     initedArr[:][row] = 0
     initedArr[:,col] = 0
+    print(updateSums(initedArr, row, col))
     return initedArr
 
 def updateSums(arr, row, col):
