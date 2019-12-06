@@ -1,7 +1,4 @@
 # IDSA-Project
-IDSA Project files
-
-
 import tkinter
 from tkinter import *
 from PIL import ImageTk,Image
@@ -12,7 +9,7 @@ mframe = tkinter.Frame(main)
 mframe.configure(bg="black")
 mframe.pack(padx=100, pady=100)
 canvas = Canvas(main, width=600, height=200)
-image=ImageTk.PhotoImage(Image.open("C:\\Users\\User\\Desktop\\pp.jpg"))
+image=ImageTk.PhotoImage(Image.open("pp.jpg"))
 canvas.create_image(-20,-20,anchor=NW,image=image)
 canvas.pack()
 main.configure(bg="black")
@@ -46,7 +43,8 @@ def how():
     back = tkinter.Button(mframe, command=window, text='Back', font= "Arial")
     back.pack()
 
-
+def loadMatrix():
+    
 
 def window():
     cls()
