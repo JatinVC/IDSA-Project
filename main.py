@@ -1,6 +1,5 @@
 # IDSA-Project
 IDSA Project files
-#GUI
 
 
 import tkinter
