@@ -2,17 +2,22 @@
 import tkinter
 from tkinter import *
 from PIL import ImageTk,Image
+from ComputerMode import *
+import random
 main = tkinter.Tk()
 
 main.title("Sign-Reversal Puzzle")
 mframe = tkinter.Frame(main)
-mframe.configure(bg="black")
+mframe.configure(bg="white")
 mframe.pack(padx=100, pady=100)
 canvas = Canvas(main, width=600, height=200)
 image=ImageTk.PhotoImage(Image.open("pp.jpg"))
 canvas.create_image(-20,-20,anchor=NW,image=image)
 canvas.pack()
-main.configure(bg="black")
+main.configure(bg="white")
+row = 2
+col = 2
+matrix = initArr(row, col)
 
 def cls():
     for buff in mframe.winfo_children():
@@ -20,7 +25,7 @@ def cls():
 
 def play():
     cls()
-    player = tkinter.Button(mframe, text='Player Mode', font= "Arial")
+    player = tkinter.Button(mframe, command=loadMatrix, text='Player Mode', font= "Arial")
     player.pack()
     computer = tkinter.Button(mframe, text='Computer Mode', font= "Arial")
     computer.pack()
@@ -44,7 +49,14 @@ def how():
     back.pack()
 
 def loadMatrix():
-    
+    cls()
+    matrixLabel = []
+    for i in range(row):
+        for j in range(col):
+            matrixLabel.append(tkinter.Label(mframe, text=matrix[i][j]))
+    for i in range(len(matrixLabel)):
+        for j in matrixLabel:
+            j.grid(col=i, row=i)
 
 def window():
     cls()
