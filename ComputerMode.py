@@ -30,7 +30,20 @@ def updateSums(arr, row, col):
             sum += arr[j][i]
         arr[row,i] = sum
         sum = 0
-
+def choose(arr, row, col):
+    #row inverse
+    for i in range(row):
+        for j in range(col):
+            varname[:][row] *= -1
+        arr[i,col] = sum
+        sum = 0
+    #col inverse
+    for i in range(row):
+        for j in range(col):
+            varname[:,col] *= -1
+        arr[row,j] = sum
+        sum = 0
+        
 def hints(arr, row, col):
     #check if row sum is non-negative, if its negative, then suggest player to reverse sign
     for i in range(row):
