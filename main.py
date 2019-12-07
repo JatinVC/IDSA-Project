@@ -19,7 +19,7 @@ main.configure(bg="white")
 row=random.randint(1, 10)
 col = row
 matrix = initArr(row, col)
-
+labels = []
 
 def cls():
     for buff in mframe.winfo_children():
@@ -58,31 +58,41 @@ def playerMode():
         for j in range(col+1):
             labels.append(Label(mframe, text=matrix[i, j]).grid(column=j+5, row=i+5))
 
-    commandEntry = Entry(mframe, text="Type in your command here")
+    commandEntry = tkinter.Entry(mframe, text="Type in your command here")
     commandEntry.grid(row=1, column=1, padx=5, pady=5)
+    submitButton = tkinter.Button(mframe, text='Enter', font='Arial', command=playerMove(commandEntry))
+    submitButton.grid()
     back = tkinter.Button(mframe, command=window, text='Back', font= "Arial")
     back.grid(row=2, column=1)
 
 def computerMode():
         cls()
-        labels = []
 
         for i in range(row+1):
             for j in range(col+1):
                 labels.append(Label(mframe, text=matrix[i, j]).grid(column=j+5, row=i+5))
 
-        commandEntry = Entry(mframe, text="Type in your command here")
+        commandEntry = tkinter.Entry(mframe, text="Type in your command here")
         commandEntry.grid(row=1, column=1, padx=5, pady=5)
         back = tkinter.Button(mframe, command=window, text='Back', font= "Arial")
         back.grid(row=2, column=1)
-        submitCommand = tkinter.Button(mframe, text='Enter', font="Arial")
         hintField = tkinter.Text(mframe, width=30, height=2)
         hintField.grid()
+        submitCommand = tkinter.Button(mframe, text='Enter', font="Arial")
+        submitCommand.grid()
         hint=hints(matrix, row, col)
         showHint(hintField, hint)
 
 def playerMove(entryField):
-    
+    command = entryField.get().split()
+    if(command[0].lower() == "row"):
+        choose(matrix, (command[1]-1), 0)
+        updateSums(matrix, row, col)
+        for label in labels:
+            for i in range(row+1):
+                for j in range(col+1):
+                    label.config(text=matrix[i, j])
+
 
 def showHint(hintField, hint):
     hintField.insert(tkinter.END, hint)
