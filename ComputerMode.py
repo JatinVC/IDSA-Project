@@ -8,11 +8,11 @@ def initArr(row, col):
     initedArr[:,col] = 0
     updateSums(initedArr, row, col)
     for i in range(row):
-        if initedArr[i, col]>0:
+        if initedArr[i, col]>-1:
             sumPosCount+=1
-        elif initedArr[row, i]>0:
+        elif initedArr[row, i]>-1:
             sumPosCount+=1
-    if sumPosCount == (row*2):
+    if (sumPosCount == ((row*2)-1)):
         return initArr(row, col)
     return initedArr
 
@@ -30,20 +30,42 @@ def updateSums(arr, row, col):
             sum += arr[j][i]
         arr[row,i] = sum
         sum = 0
-        
-def choose(arr, row, col):
-    #row inverse
+
+    for i in range(row+1):
+        for j in range(col+1):
+            print(arr[i,j], end=" | ")
+        print('\n')
+
+
+def flipSign(arr, cInput, row, col):
+    command = cInput.split()
+    index = int(command[1]) - 1
+    if(command[0].lower() == "row"):
+        arr[:][index] *= -1
+        updateSums(arr, row, col)
+    elif(command[0].lower() == "col"):
+        arr[:, index] *= -1
+        updateSums(arr, row, col)
+    else:
+        print("invalid input, please try again")
+
+def checkWin(arr, row, col):
+    rowPos = False
+    colPos = False
     for i in range(row):
-        for j in range(col):
-            varname[:][row] *= -1
-        arr[i,col] = sum
-        sum = 0
-    #col inverse
-    for i in range(row):
-        for j in range(col):
-            varname[:,col] *= -1
-        arr[row,j] = sum
-        sum = 0
+        if arr[i, col] > 0:
+            colPos = True
+        else:
+            colPos = False
+            break
+    for i in range(col):
+        if arr[row, i] > 0:
+            rowPos = True
+        else:
+            rowPos = False
+            break
+    if (rowPos == True and colPos == True):
+        return True
 
 def hints(arr, row, col):
     #check if row sum is non-negative, if its negative, then suggest player to reverse sign

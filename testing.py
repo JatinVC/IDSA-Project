@@ -1,3 +1,4 @@
-testing = "these are some words"
-printing = testing.split()
-print(printing[0])
+import numpy as np
+arr = np.random.randint(1, 10,(3, 3))
+print(arr)
+print(arr[:, 0])

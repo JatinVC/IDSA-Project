@@ -4,22 +4,14 @@ from tkinter import *
 from PIL import ImageTk,Image
 from ComputerMode import *
 import random
-main = tkinter.Tk()
 
+main = tkinter.Tk()
 main.title("Sign-Reversal Puzzle")
 main.geometry("700x700")
 mframe = tkinter.Frame(main)
 mframe.configure(bg="white")
 mframe.pack()
-canvas = Canvas(main, width=600, height=600)
-image=ImageTk.PhotoImage(Image.open("pp.jpg"))
-canvas.create_image(-20,-20,anchor=NW,image=image)
-canvas.pack()
-main.configure(bg="white")
-row=random.randint(1, 10)
-col = row
-matrix = initArr(row, col)
-labels = []
+submitButton = tkinter.Button(mframe, text='Enter', font='Arial', command=playerMove)
 
 def cls():
     for buff in mframe.winfo_children():
@@ -60,7 +52,6 @@ def playerMode():
 
     commandEntry = tkinter.Entry(mframe, text="Type in your command here")
     commandEntry.grid(row=1, column=1, padx=5, pady=5)
-    submitButton = tkinter.Button(mframe, text='Enter', font='Arial', command=playerMove(commandEntry))
     submitButton.grid()
     back = tkinter.Button(mframe, command=window, text='Back', font= "Arial")
     back.grid(row=2, column=1)
@@ -93,11 +84,8 @@ def playerMove(entryField):
                 for j in range(col+1):
                     label.config(text=matrix[i, j])
 
-
 def showHint(hintField, hint):
     hintField.insert(tkinter.END, hint)
-
-
 
 def window():
     cls()
@@ -111,6 +99,19 @@ def window():
     b4.pack()
 
 
+
+
+
+
+canvas = Canvas(main, width=600, height=600)
+image=ImageTk.PhotoImage(Image.open("pp.jpg"))
+canvas.create_image(-20,-20,anchor=NW,image=image)
+canvas.pack()
+main.configure(bg="white")
+row=random.randint(1, 10)
+col = row
+matrix = initArr(row, col)
+labels = []
 window()
 
 main.mainloop()
