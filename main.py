@@ -18,6 +18,8 @@ canvas.pack()
 main.configure(bg="white")
 row=random.randint(1, 10)
 col = row
+row = 2
+col = 2
 matrix = initArr(row, col)
 
 
@@ -63,8 +65,6 @@ def playerMode():
     back = tkinter.Button(mframe, command=window, text='Back', font= "Arial")
     back.grid(row=2, column=1)
 
-
-
 def computerMode():
         cls()
         labels = []
@@ -77,6 +77,13 @@ def computerMode():
         commandEntry.grid(row=1, column=1, padx=5, pady=5)
         back = tkinter.Button(mframe, command=window, text='Back', font= "Arial")
         back.grid(row=2, column=1)
+        showHint()
+
+def showHint():
+    hintField = tkinter.Text(mframe, width=30, height=2)
+    hintField.insert(tkinter.END, hints(matrix, row, col))
+    hintField.grid()
+
 
 def window():
     cls()
