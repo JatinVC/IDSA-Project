@@ -75,12 +75,18 @@ def computerMode():
         commandEntry.grid(row=1, column=1, padx=5, pady=5)
         back = tkinter.Button(mframe, command=window, text='Back', font= "Arial")
         back.grid(row=2, column=1)
-        showHint()
+        submitCommand = tkinter.Button(mframe, text='Enter', font="Arial")
+        hintField = tkinter.Text(mframe, width=30, height=2)
+        hintField.grid()
+        hint=hints(matrix, row, col)
+        showHint(hintField, hint)
 
-def showHint():
-    hintField = tkinter.Text(mframe, width=30, height=2)
-    hintField.insert(tkinter.END, hints(matrix, row, col))
-    hintField.grid()
+def playerMove(entryField):
+    
+
+def showHint(hintField, hint):
+    hintField.insert(tkinter.END, hint)
+
 
 
 def window():

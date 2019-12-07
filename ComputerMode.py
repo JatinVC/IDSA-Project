@@ -42,8 +42,4 @@ def hints(arr, row, col):
             return "I would recommend flipping col: " + str(i+1)
     else:
         #if no changes
-        return True
-
-def move(playerMove):
-    #make players move based on their Entry
-    return
+        return "You have won"
