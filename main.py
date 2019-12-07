@@ -18,8 +18,6 @@ canvas.pack()
 main.configure(bg="white")
 row=random.randint(1, 10)
 col = row
-row = 2
-col = 2
 matrix = initArr(row, col)
 
 
